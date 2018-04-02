@@ -24,7 +24,7 @@ class Categories(Resource):
                     category["last_updated"] = 100**10                
                 data.append(category)
             
-            data = sorted(data,key=lambda i:i["last_updated"])
+            data = sorted(data,key=lambda i:i["last_updated"],reverse=True)
             return jsonify({"success":True,"response": data})
        
         except Exception as e:

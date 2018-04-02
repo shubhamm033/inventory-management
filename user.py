@@ -7,10 +7,6 @@ from auth import auth
 from flask_cors import CORS,cross_origin 
 
 class User(Resource):
-    # @crossdomain(origin="*")
-    # @auth
-    # def options(self):
-    #     return True
     
     @cross_origin()
     @auth
@@ -26,7 +22,7 @@ class User(Resource):
             return jsonify({"success":False,"error":e.__str__})
     
     @cross_origin()
-    # @auth
+    @auth
     def post(self):
 
         try:    
@@ -37,7 +33,7 @@ class User(Resource):
             return jsonify({"success": False,"error":e.__str__()})
 
         try:
-            user_email = data.get("email").decode("utf-8")
+            user_email = data.get("email")
             
             if not user_email:
                 return jsonify({"success":False,"message":"Please provide email"})
@@ -68,19 +64,7 @@ class User(Resource):
 
 class Userdelete(Resource):
     
-    # @cross_origin()
-    # @auth
-    # def put(self):
-    #     try:
-            
-    #         data = request.get_json(force=True)
-    #         id= data["user_id"]
-    #         mongo.db.categories.update({'user_id':id }, {'$set': data})
-    #         return jsonify({"success":True,"message":"user updated"})
-        
-    #     except Exception as e:
-    #         return jsonify({"success":False,"error":e.__str__()})
-
+    
 
     
     @cross_origin()

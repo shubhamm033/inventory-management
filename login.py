@@ -24,8 +24,8 @@ class Login(Resource):
             if not data:
                 return jsonify({"success":False,"message":"please enter details"})
         
-            user_email = data.get("email").decode("utf-8")
-            user_password=data.get("password").decode("utf-8")
+            user_email = data.get("email")
+            user_password=data.get("password")
             
             if not user_email or not user_password:
 
@@ -43,15 +43,14 @@ class Login(Resource):
                     return jsonify({"success":False,"message":"incorrect password"})
             
                 else:
-                # f = faker.Faker()
+                
 
                     token_json = {
-                         #f.address() : f.sentences(),
                         "_id": user["user_id"]
                         }
                 
                 token =  jwt.encode(token_json, jwt_secret, algorithm="HS256")
-                return jsonify({"success":True,"token": token,"username":user_email})
+                return jsonify({"success":True,"token": str(token.decode("utf-8")),"username":user_email})
         
         except Exception as e:
             return jsonify({"success":False,"error":e.__str__()})

@@ -20,8 +20,15 @@ class Details(Resource):
         try:
             cursor=mongo.db.details.find({},{"_id": 0})
             for detail in cursor:
+                if "created_at" in detail:
+                    detail["created_at"] = nicetime(detail["created_at"])                    
+                else:
+                    
+                    detail["created_at"] = itime()
                 
-                data.append(detail)       
+                
+                data.append(detail)      
+            data = sorted(data,key=lambda i:i["created_at"],reverse=True)
             return jsonify({"success":True,"response":data}) 
         
         except Exception as e:
@@ -59,10 +66,11 @@ class Details(Resource):
                 _id = data["category_id"]
                 new_detail={"details_id":uid,
                             "stock_id":data["stock_id"],
+                            "invoice_no":data["invoice_no"],
                             "purchase_value":data["purchase_value"],
                             "vendor_name":data["vendor_name"],
                             "location":data["location"],
-                            "invoice_no":data["invoice_no"],
+                            
                             "date_of_purchase":dateToepoch(data["date_of_purchase"]),
                             "created_at":itime(),
                             "last_updated":itime(),
@@ -71,7 +79,7 @@ class Details(Resource):
                 mongo.db.details.insert(new_detail)
                 
                 mongo.db.categories.update_one({'category_id':_id },{"$set":{"last_updated":itime()}})
-            return jsonify({"success":True, "message": "new_details added" })
+                return jsonify({"success":True, "message": "new_details added" })
     
         except Exception as e:
             return jsonify({"success":False,"error":e.__str__()})
@@ -90,9 +98,7 @@ class Detailsbycategories(Resource):
         details_list=[]
         
         try:
-            # print (request.data)
-            # print (request.args)
-            # print (json.loads(request.values))            
+                
 
             data=request.get_json(force=True)
             print (data)

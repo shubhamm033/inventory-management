@@ -10,7 +10,7 @@ def create_app(config_filename):
     app=Flask(__name__)
     CORS(app,support_credentials=True)
     app.config["CORS_HEADERS"]='Authorization'
-
+    
 
     
     
