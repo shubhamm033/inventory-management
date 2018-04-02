@@ -2,6 +2,7 @@
 __pycache__/ *.py[cod] *$py.class *.log __pycache__
 # C extensions
 *.so .pyc bin/ include/ lib/ share/
+*.pyc
 # vscode
 .vscode/
 # Distribution / packaging
