@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
-import flask_excel
+# import flask_excel
 
 # from config import app_config
 
