@@ -11,7 +11,7 @@ from general import *
 class Categories(Resource):
     
     @cross_origin()
-    @auth
+    # @auth
     def get(self):
         data=[]
         try:
