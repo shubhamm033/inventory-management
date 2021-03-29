@@ -32,7 +32,7 @@ pycparser==2.18
 pyexcel==0.5.7
 pyexcel-io==0.5.6
 pyexcel-webio==0.1.4
-Pygments==2.2.0
+Pygments==2.7.4
 PyJWT==1.6.0
 pymongo==3.6.1
 pytz==2018.3
