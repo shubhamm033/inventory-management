@@ -33,7 +33,7 @@ pyexcel==0.5.7
 pyexcel-io==0.5.6
 pyexcel-webio==0.1.4
 Pygments==2.2.0
-PyJWT==1.6.0
+PyJWT==2.4.0
 pymongo==3.6.1
 pytz==2018.3
 requests==2.18.4
